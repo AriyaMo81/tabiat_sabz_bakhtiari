@@ -1,6 +1,6 @@
 @extends('layout.master');
 
-@section('title','Home')
+@section('title', 'Home')
 
 @section('link')
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
@@ -25,7 +25,7 @@
 @section('content')
 
 
-  @include('home.features')
+    @include('home.features')
 
     <!-- food section -->
     <section class="food_section layout_padding-bottom">
@@ -374,39 +374,7 @@
     </section>
     <!-- end food section -->
 
-    <!-- about section -->
-    <section class="about_section layout_padding">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-md-6 ">
-                    <div class="img-box">
-                        <img src="{{ asset("images/about-img.png") }}" alt="" />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="detail-box">
-                        <div class="heading_container">
-                            <h2>
-                                لورم ایپسوم متن
-                            </h2>
-                        </div>
-                        <p>
-                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                            چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-                            تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در
-                            شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها
-                            شناخت
-                        </p>
-                        <a href="">
-                            مشاهده بیشتر
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- end about section -->
+    @include('home.about')
 
     <!-- contact section -->
     <section class="book_section layout_padding">
