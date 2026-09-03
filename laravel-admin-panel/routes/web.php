@@ -29,6 +29,6 @@ Route::group(['prefix' => 'features'], function () {
 
 Route::group(['prefix' => 'about-us'], function () {
     Route::get('/', [AboutUsController::class, 'index'])->name('about.index');
-    Route::get('/about/edit', [AboutUsController::class, 'edit'])->name('about.edit');
-    Route::put('/about', [AboutUsController::class, 'update'])->name('about.update');
+    Route::get('/{about}/edit', [AboutUsController::class, 'edit'])->name('about.edit');
+    Route::put('/{about}', [AboutUsController::class, 'update'])->name('about.update');
 });
