@@ -1,6 +1,9 @@
 <!-- footer section -->
 <footer class="footer_section">
     <div class="container">
+        @php
+            $footer = App\Models\Footer::first();
+        @endphp
         <div class="row">
             <div class="col-md-4 footer-col">
                 <div class="footer_contact">
@@ -11,21 +14,21 @@
                         <a href="">
                             <i class="bi bi-geo-alt-fill"></i>
                             <span>
-                                آدرس
+                                {{ $footer->contact_address ?? 'آدرس' }}
                             </span>
                         </a>
                         <a href="">
                             <div class="d-flex justify-content-center">
                                 <i class="bi bi-telephone-fill" aria-hidden="true"></i>
                                 <p class="my-0" style="direction: ltr;">
-                                    0910 000 0000
+                                    {{ $footer->contact_phone ?? '0910 000 0000' }}
                                 </p>
                             </div>
                         </a>
                         <a href="">
                             <i class="bi bi-envelope-fill"></i>
                             <span>
-                                demo@gmail.com
+                                {{ $footer->contact_email ?? 'demo@gmail.com' }}
                             </span>
                         </a>
                     </div>
@@ -34,24 +37,32 @@
             <div class="col-md-4 footer-col">
                 <div class="footer_detail">
                     <a href="" class="footer-logo">
-                        webprog.io
+                        {{ $footer->title ?? 'وب‌سایت' }}
                     </a>
                     <p>
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                        {{ $footer->body ?? 'لورم ایپسوم متن ساختگی...' }}
                     </p>
                     <div class="footer_social">
-                        <a href="">
-                            <i class="bi bi-telegram"></i>
-                        </a>
-                        <a href="">
-                            <i class="bi bi-whatsapp"></i>
-                        </a>
-                        <a href="">
-                            <i class="bi bi-instagram"></i>
-                        </a>
-                        <a href="">
-                            <i class="bi bi-youtube"></i>
-                        </a>
+                        @if(!empty($footer->telegram_link))
+                            <a href="{{ $footer->telegram_link }}">
+                                <i class="bi bi-telegram"></i>
+                            </a>
+                        @endif
+                        @if(!empty($footer->whatsapp_link))
+                            <a href="{{ $footer->whatsapp_link }}">
+                                <i class="bi bi-whatsapp"></i>
+                            </a>
+                        @endif
+                        @if(!empty($footer->instagram_link))
+                            <a href="{{ $footer->instagram_link }}">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                        @endif
+                        @if(!empty($footer->youtube_link))
+                            <a href="{{ $footer->youtube_link }}">
+                                <i class="bi bi-youtube"></i>
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -60,16 +71,16 @@
                     ساعت کاری
                 </h4>
                 <p>
-                    هر روز
+                    {{ $footer->work_days ?? 'هر روز' }}
                 </p>
                 <p>
-                    10.00 صبح تا 12.00 شب
+                    {{ $footer->work_hour_from ?? '10.00' }} صبح تا {{ $footer->work_hour_to ?? '12.00' }} شب
                 </p>
             </div>
         </div>
         <div class="footer-info">
             <p>
-                لورم ایپسوم متن ساختگی با تولید سادگی
+                {{ $footer->copyright ?? 'تمامی حقوق محفوظ است' }}
             </p>
         </div>
     </div>
@@ -81,6 +92,7 @@
     crossorigin="anonymous"></script>
 
 @yield('script')
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
