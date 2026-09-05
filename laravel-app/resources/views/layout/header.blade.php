@@ -83,9 +83,9 @@
 
                                 </li>
 
-                                <li class="nav-item">
+                                <li class="nav-item {{ request()->is('contact-us') ? 'active' : '' }}">
 
-                                    <a class="nav-link" href="contact.html">تماس باما</a>
+                                    <a class="nav-link" href="{{ route('contact.index') }}">تماس باما</a>
 
                                 </li>
 

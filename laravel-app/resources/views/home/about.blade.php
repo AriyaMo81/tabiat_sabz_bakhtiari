@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-6 ">
                 <div class="img-box">
-                    <img src="{{ asset('images/about-img.png') }}" alt="" />
+                    <img src="{{ asset('images/about.png') }}" alt="درباره ما" />
                 </div>
             </div>
             <div class="col-md-6">
