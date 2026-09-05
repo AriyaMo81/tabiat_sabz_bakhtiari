@@ -23,7 +23,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link
+                {{ request()->is('categories*') ? 'active' : ''}}
+                " href="{{ route('category.index') }}">
                     <i class="bi bi-grid-3x3-gap me-2"></i>
                     دسته بندی
                 </a>
@@ -61,7 +63,7 @@
                 {{ request()->is('sliders*') ? 'active' : '' }}
                 {{ request()->is('features*') ? 'active' : '' }}
                 {{ request()->is('about-us*') ? 'active' : '' }}
-                 {{ request()->is('footer*') ? 'active' : '' }}
+                {{ request()->is('footer*') ? 'active' : '' }}
                 " href="#" role="button" data-bs-toggle="dropdown">
                     <i class="bi bi-gear  me-2"></i>
                     تنظیمات سایت
