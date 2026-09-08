@@ -1,5 +1,5 @@
     <!-- contact section -->
-    <section class="book_section layout_padding">
+    <section id="contact" class="book_section layout_padding">
         <div class="container">
             <div class="heading_container">
                 <h2>
