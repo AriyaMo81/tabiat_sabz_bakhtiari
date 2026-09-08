@@ -17,7 +17,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./products.html">
+                <a class="nav-link
+                {{ request()->is('products*') ? 'active' : ''}}
+                " href="{{ route('product.index') }}">
                     <i class="bi bi-box-seam me-2"></i>
                     محصولات
                 </a>
