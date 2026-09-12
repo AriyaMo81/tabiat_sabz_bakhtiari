@@ -415,21 +415,8 @@ Dashboard
 * اپلیکیشن موبایل
 * سیستم مدیریت موجودی پیشرفته
 
----
 
-## 📸 Project Preview
 
-در این بخش می‌توانید تصاویر مربوط به صفحات پروژه، فروشگاه و پنل مدیریت را قرار دهید.
-
-مثلاً:
-
-```text
-/screenshots/home.png
-/screenshots/products.png
-/screenshots/product-detail.png
-/screenshots/cart.png
-/screenshots/admin-dashboard.png
-```
 
 ---
 
@@ -447,17 +434,6 @@ git push origin feature/new-feature
 ```
 
 سپس می‌توانید یک Pull Request ایجاد کنید.
-
----
-
-## 📄 License
-
-این پروژه برای اهداف آموزشی و توسعه‌ای ایجاد شده است.
-
-در صورت استفاده از کد یا توسعه پروژه، رعایت قوانین و مجوزهای کتابخانه‌ها و سرویس‌های استفاده‌شده الزامی است.
-
----
-
 ## 👨‍💻 Author
 
 **AriyaMo81**
