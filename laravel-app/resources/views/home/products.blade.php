@@ -1,5 +1,3 @@
-{{-- food section --}}
-
 <section class="food_section layout_padding-bottom">
 
     <div class="container" x-data="{ tab: 1 }">
@@ -11,17 +9,23 @@
         </div>
 
         <ul class="filters_menu">
+
             <li :class="tab === 1 ? 'active' : ''" @click="tab = 1">
-                سم </li>
+                سم
+            </li>
 
             <li :class="tab === 2 ? 'active' : ''" @click="tab = 2">
-                ابزار باغبانی </li>
+                ابزار باغبانی
+            </li>
 
             <li :class="tab === 3 ? 'active' : ''" @click="tab = 3">
-                کود </li>
+                کود
+            </li>
+
         </ul>
 
         @php
+
             $burgers = App\Models\Product::where('category_id', 9)
                 ->where('quantity', '>', 0)
                 ->where('status', 1)
@@ -39,11 +43,13 @@
                 ->where('status', 1)
                 ->take(3)
                 ->get();
+
         @endphp
 
         <div class="filters-content">
 
             {{-- Burgers --}}
+
             <div x-show="tab === 1">
 
                 <div class="row grid">
@@ -57,14 +63,18 @@
                                 <div>
 
                                     <div class="img-box">
+
                                         <img class="img-fluid" src="{{ imageUrl($burger->primary_image) }}"
                                             alt="{{ $burger->name }}">
+
                                     </div>
 
                                     <div class="detail-box">
 
                                         <h5>
-                                            {{ $burger->name }}
+                                            <a href="{{ route('product.show', ['product' => $burger->slug]) }}">
+                                                {{ $burger->name }}
+                                            </a>
                                         </h5>
 
                                         <p>
@@ -141,6 +151,7 @@
 
 
             {{-- Pizzas --}}
+
             <div x-show="tab === 2">
 
                 <div class="row grid">
@@ -154,14 +165,18 @@
                                 <div>
 
                                     <div class="img-box">
+
                                         <img class="img-fluid" src="{{ imageUrl($pizza->primary_image) }}"
                                             alt="{{ $pizza->name }}">
+
                                     </div>
 
                                     <div class="detail-box">
 
                                         <h5>
-                                            {{ $pizza->name }}
+                                            <a href="{{ route('product.show', ['product' => $pizza->slug]) }}">
+                                                {{ $pizza->name }}
+                                            </a>
                                         </h5>
 
                                         <p>
@@ -238,6 +253,7 @@
 
 
             {{-- Salads --}}
+
             <div x-show="tab === 3">
 
                 <div class="row grid">
@@ -251,14 +267,18 @@
                                 <div>
 
                                     <div class="img-box">
+
                                         <img class="img-fluid" src="{{ imageUrl($salad->primary_image) }}"
                                             alt="{{ $salad->name }}">
+
                                     </div>
 
                                     <div class="detail-box">
 
                                         <h5>
-                                            {{ $salad->name }}
+                                            <a href="{{ route('product.show', ['product' => $salad->slug]) }}">
+                                                {{ $salad->name }}
+                                            </a>
                                         </h5>
 
                                         <p>
@@ -336,13 +356,13 @@
         </div>
 
         <div class="btn-box">
+
             <a href="">
                 مشاهده بیشتر
             </a>
+
         </div>
 
     </div>
 
 </section>
-
-{{-- end food section --}}
