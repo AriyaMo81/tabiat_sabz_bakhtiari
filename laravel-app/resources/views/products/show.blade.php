@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'About Page')
+@section('title', 'Show Product Page')
 
 @section('content')
 
