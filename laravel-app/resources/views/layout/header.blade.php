@@ -48,7 +48,7 @@
             <div class="bg-box">
 
                 <img
-                    src="{{ asset('/images/hero-bg.jpg') }}"
+                    src="{{ asset('/images/hero-bg-1.png') }}"
                     alt=""
                 >
 
@@ -67,7 +67,7 @@
                             href="{{ route('home.index') }}"
                         >
                             <span>
-                                webprog.io
+                              طبیعت سبز بختیاری
                             </span>
                         </a>
 

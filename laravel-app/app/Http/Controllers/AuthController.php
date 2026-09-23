@@ -21,6 +21,7 @@ class AuthController extends Controller
         ]);
 
         try {
+
             $cellphone = $request->cellphone;
 
             // شماره مجاز پلن Free
@@ -48,11 +49,14 @@ class AuthController extends Controller
 
             // ذخیره اطلاعات
             if ($user) {
+
                 $user->update([
                     'otp' => $otpCode,
                     'login_token' => $loginToken,
                 ]);
+
             } else {
+
                 $user = User::create([
                     'cellphone' => $cellphone,
                     'otp' => $otpCode,
@@ -64,17 +68,15 @@ class AuthController extends Controller
                 'message' => 'کد تایید ارسال شد.',
                 'login_token' => $loginToken,
             ], 200);
+
         } catch (\Throwable $ex) {
+
             return response()->json([
                 'message' => 'خطایی در ارسال کد تایید رخ داد.',
                 'errors' => $ex->getMessage(),
             ], 500);
         }
     }
-
-
-
-
 
     public function checkOtp(Request $request)
     {
@@ -117,6 +119,7 @@ class AuthController extends Controller
             return response()->json([
                 'message' => 'ورود با موفقیت انجام شد.'
             ], 200);
+
         } catch (\Throwable $ex) {
 
             return response()->json([
@@ -164,6 +167,7 @@ class AuthController extends Controller
                 'message' => 'کد تایید جدید ارسال شد.',
                 'login_token' => $loginToken
             ], 200);
+
         } catch (\Exception $ex) {
 
             return response()->json([
@@ -171,5 +175,16 @@ class AuthController extends Controller
                 'errors' => $ex->getMessage()
             ], 500);
         }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('home.index');
     }
 }

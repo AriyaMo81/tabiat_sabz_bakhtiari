@@ -3,9 +3,11 @@
     <div class="container" x-data="{ tab: 1 }">
 
         <div class="heading_container heading_center">
+
             <h2>
                 منو محصولات
             </h2>
+
         </div>
 
         <ul class="filters_menu">
@@ -48,7 +50,7 @@
 
         <div class="filters-content">
 
-            {{-- Burgers --}}
+            {{-- سم --}}
 
             <div x-show="tab === 1">
 
@@ -72,13 +74,19 @@
                                     <div class="detail-box">
 
                                         <h5>
+
                                             <a href="{{ route('product.show', ['product' => $burger->slug]) }}">
+
                                                 {{ $burger->name }}
+
                                             </a>
+
                                         </h5>
 
                                         <p>
+
                                             {{ $burger->description }}
+
                                         </p>
 
                                         <div class="options">
@@ -94,7 +102,9 @@
                                                     <span>
 
                                                         <span class="text-danger">
+
                                                             ({{ salePercent($burger->price, $burger->sale_price) }}%)
+
                                                         </span>
 
                                                         {{ number_format($burger->sale_price) }}
@@ -124,11 +134,16 @@
                                             <div class="d-flex">
 
                                                 <a class="me-2" href="">
+
                                                     <i class="bi bi-cart-fill text-white fs-6"></i>
+
                                                 </a>
 
-                                                <a href="">
+                                                <a
+                                                    href="{{ route('profile.wishlist.add', ['product_id' => $burger->id]) }}">
+
                                                     <i class="bi bi-heart-fill text-white fs-6"></i>
+
                                                 </a>
 
                                             </div>
@@ -149,8 +164,7 @@
 
             </div>
 
-
-            {{-- Pizzas --}}
+            {{-- ابزار باغبانی --}}
 
             <div x-show="tab === 2">
 
@@ -174,13 +188,19 @@
                                     <div class="detail-box">
 
                                         <h5>
+
                                             <a href="{{ route('product.show', ['product' => $pizza->slug]) }}">
+
                                                 {{ $pizza->name }}
+
                                             </a>
+
                                         </h5>
 
                                         <p>
+
                                             {{ $pizza->description }}
+
                                         </p>
 
                                         <div class="options">
@@ -196,7 +216,9 @@
                                                     <span>
 
                                                         <span class="text-danger">
+
                                                             ({{ salePercent($pizza->price, $pizza->sale_price) }}%)
+
                                                         </span>
 
                                                         {{ number_format($pizza->sale_price) }}
@@ -226,11 +248,15 @@
                                             <div class="d-flex">
 
                                                 <a class="me-2" href="">
+
                                                     <i class="bi bi-cart-fill text-white fs-6"></i>
+
                                                 </a>
 
-                                                <a href="">
+                                                <a href="{{ route('profile.wishlist.add', ['product_id' => $pizza->id]) }}">
+
                                                     <i class="bi bi-heart-fill text-white fs-6"></i>
+
                                                 </a>
 
                                             </div>
@@ -251,8 +277,7 @@
 
             </div>
 
-
-            {{-- Salads --}}
+            {{-- کود --}}
 
             <div x-show="tab === 3">
 
@@ -276,13 +301,19 @@
                                     <div class="detail-box">
 
                                         <h5>
+
                                             <a href="{{ route('product.show', ['product' => $salad->slug]) }}">
+
                                                 {{ $salad->name }}
+
                                             </a>
+
                                         </h5>
 
                                         <p>
+
                                             {{ $salad->description }}
+
                                         </p>
 
                                         <div class="options">
@@ -298,7 +329,9 @@
                                                     <span>
 
                                                         <span class="text-danger">
+
                                                             ({{ salePercent($salad->price, $salad->sale_price) }}%)
+
                                                         </span>
 
                                                         {{ number_format($salad->sale_price) }}
@@ -328,11 +361,15 @@
                                             <div class="d-flex">
 
                                                 <a class="me-2" href="">
+
                                                     <i class="bi bi-cart-fill text-white fs-6"></i>
+
                                                 </a>
 
-                                                <a href="">
+                                                <a href="{{ route('profile.wishlist.add', ['product_id' => $salad->id]) }}">
+
                                                     <i class="bi bi-heart-fill text-white fs-6"></i>
+
                                                 </a>
 
                                             </div>
@@ -357,12 +394,13 @@
 
         <div class="btn-box">
 
-            <a href="">
+            <a href="{{ route('product.menu') }}">
                 مشاهده بیشتر
             </a>
 
         </div>
 
     </div>
+
 
 </section>

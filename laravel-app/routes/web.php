@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 
 
 Route::get('/', function () {
@@ -38,3 +39,26 @@ Route::middleware('guest')->group(function () {
     Route::post('/resend-otp', [AuthController::class, 'resendOtp'])
         ->name('auth.resendOtp');
 });
+
+Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout')->middleware('auth');
+
+Route::prefix('profile')->middleware('auth')->group(function () {
+    Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
+    Route::put('/{user}', [ProfileController::class, 'update'])->name('profile.update');
+});
+
+Route::prefix('profile')->middleware('auth')->group(function () {
+    Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
+    Route::put('/{user}', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::get('/addresses', [ProfileController::class, 'addresses'])->name('profile.address');
+    Route::get('/addresses/create', [ProfileController::class, 'addressCreate'])->name('profile.address.create');
+    Route::post('/addresses', [ProfileController::class, 'addressStore'])->name('profile.address.store');
+    Route::get('/addresses/{address}/edit', [ProfileController::class, 'addressEdit'])->name('profile.address.edit');
+    Route::put('/addresses/{address}', [ProfileController::class, 'addressUpdate'])->name('profile.address.update');
+
+    Route::get('/wishlist', [ProfileController::class, 'wishlist'])->name('profile.wishlist');
+    Route::get('/remove-from-wishlist', [ProfileController::class, 'removeFromWishlist'])->name('profile.wishlist.remove');
+});
+
+Route::get('profile/add-to-wishlist', [ProfileController::class, 'addToWishlist'])->name('profile.wishlist.add');
