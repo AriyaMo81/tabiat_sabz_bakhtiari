@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CartController;
+
 
 
 Route::get('/', function () {
@@ -62,3 +64,12 @@ Route::prefix('profile')->middleware('auth')->group(function () {
 });
 
 Route::get('profile/add-to-wishlist', [ProfileController::class, 'addToWishlist'])->name('profile.wishlist.add');
+
+Route::prefix('cart')->middleware('auth')->group(function () {
+    Route::get('/', [CartController::class, 'index'])->name('cart.index');
+    Route::get('/increment', [CartController::class, 'increment'])->name('cart.increment');
+    Route::get('/decrement', [CartController::class, 'decrement'])->name('cart.decrement');
+    Route::get('/add', [CartController::class, 'add'])->name('cart.add');
+    Route::get('/remove', [CartController::class, 'remove'])->name('cart.remove');
+    Route::get('/clear', [CartController::class, 'clear'])->name('cart.clear');
+});
