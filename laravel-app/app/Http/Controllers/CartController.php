@@ -2,16 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Coupon;
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
     public function index(Request $request)
     {
+        // dd(request()->session()->get('coupon') );
         $cart = $request->session()->get('cart');
 
-        return view('cart.index', compact('cart'));
+        if($cart == null) {
+            return view('cart.index', compact('cart'));
+        }
+
+        $cart_total_price = 0;
+        foreach($cart as $key => $item){
+            $price = $item['is_sale'] ? $item['sale_price'] : $item['price'];
+            $cart_total_price += $price * $item['qty'];
+        }
+
+        return view('cart.index', compact('cart', 'cart_total_price'));
     }
 
     public function increment(Request $request)
@@ -134,5 +147,21 @@ class CartController extends Controller
     {
         $request->session()->put('cart', []);
         return redirect()->route('product.menu')->with('warning', 'سبد خرید شما خالی شد');
+    }
+
+    public function checkCoupon(Request $request)
+    {
+        $request->validate([
+            'code' => 'required|string',
+        ]);
+
+        $coupon = Coupon::where('code', $request->code)->where('expired_at', '>', Carbon::now())->first();
+
+        if ($coupon == null) {
+            return redirect()->route('cart.index')->withErrors(['code' => 'کد تخفیف وارد شده وجود ندارد']);
+        }
+
+        $request->session()->put('coupon', ['code' => $coupon->code, 'percent' => $coupon->percentage]);
+        return redirect()->route('cart.index');
     }
 }

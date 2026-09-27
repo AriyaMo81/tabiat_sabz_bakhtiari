@@ -72,4 +72,5 @@ Route::prefix('cart')->middleware('auth')->group(function () {
     Route::get('/add', [CartController::class, 'add'])->name('cart.add');
     Route::get('/remove', [CartController::class, 'remove'])->name('cart.remove');
     Route::get('/clear', [CartController::class, 'clear'])->name('cart.clear');
+    Route::get('/check-coupon', [CartController::class, 'checkCoupon'])->name('cart.checkCoupon');
 });

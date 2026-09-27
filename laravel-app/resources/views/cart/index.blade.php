@@ -96,12 +96,20 @@
 
                         <div class="row mt-4">
                             <div class="col-12 col-md-6">
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="کد تخفیف" />
-                                    <button class="input-group-text" id="basic-addon2">اعمال کد
-                                        تخفیف</button>
-                                </div>
+                                <form action="{{ route('cart.checkCoupon') }}">
+                                    <div class="input-group mb-3">
+                                        <input name="code" type="text" class="form-control" placeholder="کد تخفیف" />
+                                        <button type="submit" class="input-group-text" id="basic-addon2">اعمال کد
+                                            تخفیف</button>
+                                    </div>
+                                    <div class="form-text text-danger">
+                                        @error('code')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+                                </form>
                             </div>
+
                             <div class="col-12 col-md-6 d-flex justify-content-end align-items-baseline">
                                 <div>
                                     انتخاب آدرس
@@ -125,21 +133,40 @@
                                             <li class="list-group-item d-flex justify-content-between">
                                                 <div>مجموع قیمت :</div>
                                                 <div>
-                                                    535,000 تومان
+                                                    {{ number_format($cart_total_price) }} تومان
                                                 </div>
                                             </li>
-                                            <li class="list-group-item d-flex justify-content-between">
-                                                <div>تخفیف :
-                                                    <span class="text-danger ms-1">10%</span>
-                                                </div>
-                                                <div class="text-danger">
-                                                    53,500 تومان
-                                                </div>
-                                            </li>
+
+                                            @php
+                                                $coupnPrice = 0;
+                                                if (request()->session()->has('coupon')) {
+                                                    $coupon = request()->session()->get('coupon');
+                                                    $couponCode = $coupon['code'];
+                                                    $couponPercent = $coupon['percent'];
+                                                    $coupnPrice = ($cart_total_price * $couponPercent) / 100;
+                                                }
+                                            @endphp
+
+                                            @if ($coupnPrice != 0)
+                                                <li class="list-group-item d-flex justify-content-between">
+                                                    <div>تخفیف :
+                                                        <span class="text-danger ms-1">{{ $couponPercent }}%</span>
+                                                    </div>
+                                                    <div class="text-danger">
+                                                        {{ number_format($coupnPrice) }} تومان
+                                                    </div>
+                                                </li>
+                                            @endif
+
                                             <li class="list-group-item d-flex justify-content-between">
                                                 <div>قیمت پرداختی :</div>
                                                 <div>
-                                                    481,500 تومان
+                                                    @if ($coupnPrice != 0)
+                                                        {{ number_format($cart_total_price - $coupnPrice) }}
+                                                    @else
+                                                        {{ number_format($cart_total_price) }}
+                                                    @endif
+                                                    تومان
                                                 </div>
                                             </li>
                                         </ul>
