@@ -45,7 +45,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link
+                {{ request()->is('coupons*') ? 'active' : ''}}
+                " href="{{ route('coupon.index') }}">
                     <i class="bi bi-percent me-2"></i>
                     تخفیف ها
                 </a>
